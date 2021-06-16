@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This</title>
+</head>
+<body>
+    <h1>This is not confused anymore</h1>
+    <script>
+        const myObject = {
+            name: 'Pablo Scober',
+            getFullName: function(){
+                console.log(this);
+                return 'Mr.' + this.name;
+            }
+        }
+        const anotherObject = {
+            name: 'Luis Gustabo',
+        }
+        myObject.getFullName();
+        anotherObject.getFullName = myObject.getFullName;
+
+        anotherObject.getFullName();
+    </script>
+</body>
+</html>
+
+<!-- It has different values depending on where it is used:
+
+In a method, this refers to the owner object.
+Alone, this refers to the global object.
+In a function, this refers to the global object.
+In a function, in strict mode, this is undefined.
+In an event, this refers to the element that received the event.
+Methods like call(), and apply() can refer this to any object. -->

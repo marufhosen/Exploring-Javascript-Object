@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async, Await</title>
+</head>
+<body>
+
+    <ul id="myList">
+
+    </ul>
+    
+    <script>
+        // async function add(num1, num2){
+        //     return num1+num2;
+        // }
+
+        // add(7,5).then(res => console.log(res));
+
+
+        async function loadData(){
+            const response =await fetch('https://jsonplaceholder.typicode.com/users');
+            const data = await response.json();
+            displayData(data);
+        }
+
+        // function loadData(){
+        //     fetch('https://jsonplaceholder.typicode.com/users')
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         displayData(data);
+        //     })
+        // }
+
+        loadData();
+
+        function displayData(data){
+            const parentNode = document.getElementById('myList');
+            const names = data.map(userName => userName.name);
+            const indivisualName = names.map(function(iname){
+                const createLi = document.createElement('li');
+                createLi.innerText = iname;
+                parentNode.appendChild(createLi);
+            })
+        }
+    </script>
+</body>
+</html>
